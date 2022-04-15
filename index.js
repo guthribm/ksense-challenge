@@ -5,7 +5,7 @@ let posts = document.getElementById('posts')
 
 // function to fetch post comments based on the ID passed from the button click event
 async function getPosts(id){
-    document.querySelectorAll("button").forEach(item => item.classList.remove("current"))
+    document.querySelectorAll(".name").forEach(item => item.classList.remove("current"))
     try{
         const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
         if(!response.ok){
@@ -16,12 +16,9 @@ async function getPosts(id){
         posts.innerHTML = ""
         for(let i of json){
             posts.innerHTML +=  `
-            <div class="post-container">
-            <p>id ${i.id}</p>
-            <p><span>Name:</span> ${i.name}</p>
-            <p><span>Email:</span> ${i.email}</p>
-            <p><span>Post:</span> ${i.body}</p>
-            </div>            
+            <tr class='post-container'>
+            <td><span>NAME:</span> ${i.name}<br><span>EMAIL:</span> ${i.email}<br><span>POST:</span> ${i.body}</td>
+            </tr>       
             `
         }
 
@@ -42,9 +39,9 @@ async function getUsers(){
         }
         const json = await response.json();
         for (let i of json){
-            table.innerHTML += `<button id="${i.id}" class="name">${i.name}</button>`
+            table.innerHTML += `<tr id="${i.id}" class="name"><td>${i.name}</td></tr>`
         }
-        document.querySelectorAll("button").forEach(item=>item.addEventListener('click',(e)=>{getPosts(e.currentTarget.id)}))
+        document.querySelectorAll(".name").forEach(item=>item.addEventListener('click',(e)=>{getPosts(e.currentTarget.id)}))
         // console.log('json: '+json)
     }
     catch(e){
@@ -53,4 +50,3 @@ async function getUsers(){
 }
 
 getUsers()
-
