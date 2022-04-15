@@ -53,6 +53,10 @@ table {
     line-height: 1.6;
 }
 
+.post-container p {
+    color: var(--primary)
+}
+
 span {
     background: white;
     color: var(--secondary)
