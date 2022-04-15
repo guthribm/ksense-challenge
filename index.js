@@ -5,12 +5,14 @@ let posts = document.getElementById('posts')
 
 // function to fetch post comments based on the ID passed from the button click event
 async function getPosts(id){
+    document.querySelectorAll("button").forEach(item => item.classList.remove("current"))
     try{
         const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
         if(!response.ok){
             throw new Error(`HTTP error: ${response.status}`); 
         }
         const json = await response.json();
+        document.getElementById(`${id}`).classList.add('current')
         posts.innerHTML = ""
         for(let i of json){
             posts.innerHTML +=  `
@@ -52,6 +54,3 @@ async function getUsers(){
 
 getUsers()
 
-
-
- 
