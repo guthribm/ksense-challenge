@@ -73,7 +73,7 @@ span {
     background: var(--secondary)
 }
 
-.name:hover, .name:active {
+.name:hover, .name:active, .current {
     color: var(--secondary);
     border-color: var(--secondary);
     background: var(--primary);
